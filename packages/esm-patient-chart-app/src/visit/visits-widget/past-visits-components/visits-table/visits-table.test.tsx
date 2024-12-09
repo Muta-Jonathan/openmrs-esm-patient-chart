@@ -37,9 +37,9 @@ describe('EncounterList', () => {
     const searchbox = screen.getByRole('searchbox', { name: /filter table/i });
     const expectedColumnHeaders = [/date & time/, /visit type/, /Form name/, /encounter type/, /provider/];
     const expectedTableRows = [
-      /18\-jan\-2022, 09:55 pm facility visit admission poc consent form \-\- options/,
-      /03\-aug\-2021, 06:17 am facility visit visit note \-\- user one options/,
-      /05\-jul\-2021, 03:37 pm facility visit consultation covid 19 dennis the doctor options/,
+      /18\-jan\-2022, 04:25 pm facility visit admission poc consent form \-\- options/,
+      /03\-aug\-2021, 12:47 am facility visit visit note \-\- user one options/,
+      /05\-jul\-2021, 10:07 am facility visit consultation covid 19 dennis the doctor options/,
     ];
 
     expectedColumnHeaders.forEach((header) => {
@@ -85,6 +85,7 @@ describe('Delete Encounter', () => {
     await screen.findByRole('table');
     expect(screen.getByRole('table')).toBeInTheDocument();
 
+    screen.logTestingPlaygroundURL();
     const row = screen.getByRole('row', {
       name: /18-Jan-2022, 04:25 PM Facility Visit Admission POC Consent Form -- Options/i,
     });
