@@ -85,7 +85,6 @@ describe('Delete Encounter', () => {
     await screen.findByRole('table');
     expect(screen.getByRole('table')).toBeInTheDocument();
 
-    screen.logTestingPlaygroundURL();
     const row = screen.getByRole('row', {
       name: /18-Jan-2022, 04:25 PM Facility Visit Admission POC Consent Form -- Options/i,
     });
