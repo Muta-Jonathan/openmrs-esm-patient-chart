@@ -118,7 +118,12 @@ export function LabOrderForm({
   const { orderReasons } = useOrderReasons(orderReasonUuids);
 
   const filterItemsByName = useCallback((menu) => {
-    return menu?.item?.value?.toLowerCase().includes(menu?.inputValue?.toLowerCase());
+    const inputValue = menu?.inputValue?.toLowerCase();
+    const itemDisplay = menu?.item?.display?.toLowerCase();
+    if (!inputValue) {
+      return true;
+    }
+    return itemDisplay?.includes(inputValue);
   }, []);
 
   const handleFormSubmission = useCallback(
@@ -146,6 +151,7 @@ export function LabOrderForm({
 
       closeWorkspaceWithSavedChanges({
         onWorkspaceClose: () => launchPatientWorkspace('order-basket'),
+        closeWorkspaceGroup: false,
       });
     },
     [orders, setOrders, session?.currentProvider?.uuid, closeWorkspaceWithSavedChanges, initialOrder],
@@ -155,6 +161,7 @@ export function LabOrderForm({
     setOrders(orders.filter((order) => order.testType.conceptUuid !== defaultValues.testType.conceptUuid));
     closeWorkspace({
       onWorkspaceClose: () => launchPatientWorkspace('order-basket'),
+      closeWorkspaceGroup: false,
     });
   }, [closeWorkspace, orders, setOrders, defaultValues]);
 
